@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "scripts": {
+    "start:rest": "node fastify",
+    "start:gql": "node apollo",
+    "autocannon:rest:ram:ts": "node_modules/.bin/autocannon http://localhost:3000/ts",
+    "autocannon:rest:ram:dates": "node_modules/.bin/autocannon http://localhost:3000/dates",
+    "autocannon:rest:db:decimals": "node_modules/.bin/autocannon http://localhost:3000/pgdecimals",
+    "autocannon:rest:db:doubles": "node_modules/.bin/autocannon http://localhost:3000/pgdoubles",
+    "autocannon:gql:ram:ts": "node_modules/.bin/autocannon -H 'Content-Type':'application/json' 'http://localhost:4000/?query=query%20Query%20%7B%20withTimestampsFromRAM%20%7B%20name%20amount1%20amount2%20amount3%20createdAt%20updatedAt%20deletedAt%20%7D%7D&variables=%7B%7D&operationName=Query'",
+    "autocannon:gql:ram:dates": "node_modules/.bin/autocannon -H 'Content-Type':'application/json' 'http://localhost:4000/?query=query%20Query%20%7B%20withDatesFromRAM%20%7B%20name%20amount1%20amount2%20amount3%20createdAt%20updatedAt%20deletedAt%20%7D%7D&variables=%7B%7D&operationName=Query'",
+    "autocannon:gql:db:decimals": "node_modules/.bin/autocannon -H 'Content-Type':'application/json' 'http://localhost:4000/?query=query%20Query%20%7B%20withDecimalsFromDB%20%7B%20name%20amount1%20amount2%20amount3%20createdAt%20updatedAt%20deletedAt%20%7D%7D&variables=%7B%7D&operationName=Query'",
+    "autocannon:gql:db:doubles": "node_modules/.bin/autocannon -H 'Content-Type':'application/json' 'http://localhost:4000/?query=query%20Query%20%7B%20withDoublesFromDB%20%7B%20name%20amount1%20amount2%20amount3%20createdAt%20updatedAt%20deletedAt%20%7D%7D&variables=%7B%7D&operationName=Query'"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.9.4",
+    "autocannon": "^7.12.0",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.2",
+    "graphql": "^16.8.1",
+    "postgres": "^3.4.0"
+  }
+}
